@@ -1,4 +1,4 @@
-# Docker image for Elastic Curator
+# Docker image for Elastic Curator - [![Build Status](https://jenkins.toulouse.appstud.com/buildStatus/icon?job=elastic-curator/master)](https://jenkins.toulouse.appstud.com/job/elastic-curator/job/master/)
 
 [Elastic Curator](https://www.elastic.co/guide/en/elasticsearch/client/curator/current/about.html) is a ElasticSearch routine runner. [Documentation@elastic.co](https://www.elastic.co/guide/en/elasticsearch/client/curator/current/index.html)
 
