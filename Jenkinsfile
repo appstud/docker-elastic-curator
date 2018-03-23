@@ -24,7 +24,7 @@ pipeline {
     stage('Build image') {
         steps {
             script {
-                docker.build("elastic-curator:${CURATOR_VERSION}")
+                sh "docker build -t elastic-curator:${CURATOR_VERSION} ."
             }
         }
     }
