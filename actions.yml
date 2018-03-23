@@ -1,0 +1,64 @@
+actions:
+  1:
+    action: snapshot
+    description: >-
+      Snapshot yesterday
+    options:
+      # Name of the snapshot created - Nothing to do with the folder
+      repository: backups
+      # Leaving name blank will result in the default 'curator-%Y%m%d%H%M%S'
+      name: metriclogs-%Y%m%d
+      wait_for_completion: True
+      max_wait: 3600
+      wait_interval: 10
+      ignore_empty_list: True
+    filters:
+      # Get all metricbeat & filebeat indexes
+      - filtertype: pattern
+        kind: regex
+        value: '^.*(metricbeat-|filebeat-).*$'
+      - filtertype: period
+        period_type: relative
+        source: creation_date
+        range_from: -1
+        range_to: -1
+        unit: days
+  2:
+    action: delete_indices
+    description: >-
+      Delete indices > 30 days
+    options:
+      ignore_empty_list: True
+    filters:
+      # Get all metricbeat & filebeat indexes
+      - filtertype: pattern
+        kind: regex  
+        value: '^.*(metricbeat-|filebeat-).*$'
+      # Remove everything
+      - filtertype: age
+        source: creation_date
+        direction: older
+        unit: days
+        unit_count: 30
+  3:
+    action: delete_snapshots
+    description: >-
+      Delete 'metriclogs' snapshots > 60 days
+    options:
+      # Name of the snapshot created - Nothing to do with the folder
+      repository: backups
+      # Leaving name blank will result in the default 'curator-%Y%m%d%H%M%S'
+      retry_interval: 120
+      retry_count: 3
+      ignore_empty_list: True
+    filters:
+      # Get all metriclogs snapshots
+      - filtertype: pattern
+        kind: regex
+        value: '^(metriclogs-|).*$'
+      # Remove metriclogs > 60 days
+      - filtertype: age
+        source: creation_date
+        direction: older
+        unit: days
+        unit_count: 60
