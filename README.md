@@ -1,4 +1,6 @@
-# Docker image for Elastic Curator - [![Build Status](https://jenkins.toulouse.appstud.com/buildStatus/icon?job=elastic-curator/master)](https://jenkins.toulouse.appstud.com/job/elastic-curator/job/master/)
+# Docker image for Elastic Curator
+
+**NOTICE**: If you're running Elasticsearch >= 6.6, you don't have to use Curator anymore. You should instead try the new feature [Index Lifecycle Management](https://www.elastic.co/guide/en/elasticsearch/reference/current/index-lifecycle-management.html) which does the same job as Curator.
 
 [Elastic Curator](https://www.elastic.co/guide/en/elasticsearch/client/curator/current/about.html) is a ElasticSearch routine runner. [Documentation@elastic.co](https://www.elastic.co/guide/en/elasticsearch/client/curator/current/index.html)
 
